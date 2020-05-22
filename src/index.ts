@@ -4,6 +4,10 @@ import { Observe } from "./Observer";
 let a = {
   b: false,
   c: true,
+  d: {
+    d1: true,
+    d2: false,
+  },
 };
 const counter = Observable(a);
 
@@ -23,14 +27,21 @@ const f = Observe(() => {
 
 const c = Observe(() => {
   console.log("222");
-  if (counter.c) {
-    console.log("c2 is true");
+  if (counter.d.d1) {
+    console.log("d1 is true");
   } else {
-    console.log("c2 is false");
+    console.log("d1 is false");
   }
 });
 
 setTimeout(() => {
-  Object.assign(counter, { b: true, c: false });
+  Object.assign(counter, {
+    b: true,
+    c: false,
+    d: {
+      d1: false,
+      d2: true,
+    },
+  });
   console.log("111");
 }, 2000);
