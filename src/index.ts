@@ -1,47 +1,21 @@
 import { Observable } from "./Observable";
 import { Observe } from "./Observer";
 
-let a = {
-  b: false,
-  c: true,
-  d: {
-    d1: true,
-    d2: false,
-  },
+let primitive = {
+  human: false,
+  gender: false,
 };
-const counter = Observable(a);
-
-const f = Observe(() => {
-  console.log("222");
-  if (counter.b) {
-    console.log("b is true");
-  } else {
-    console.log("b is false");
-  }
-  // if (counter.c) {
-  //   console.log("c1 is true");
-  // } else {
-  //   console.log("c1 is false");
-  // }
+primitive = Observable(primitive);
+Observe(() => {
+  console.log(`this primitive is ${primitive.human ? "human" : "animal"} !`);
 });
-
-const c = Observe(() => {
-  console.log("222");
-  if (counter.d.d1) {
-    console.log("d1 is true");
-  } else {
-    console.log("d1 is false");
-  }
+Observe(() => {
+  console.log(`this primitive is ${primitive.gender ? "male" : "female"} !`);
 });
-
 setTimeout(() => {
-  Object.assign(counter, {
-    b: true,
-    c: false,
-    d: {
-      d1: false,
-      d2: true,
-    },
+  Object.assign(primitive, {
+    human: true,
+    gender: true,
   });
-  console.log("111");
+  console.log("assign done !");
 }, 2000);
